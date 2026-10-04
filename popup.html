@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Sleep Timer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 6v6l3.5 2"/>
+            <path d="M18 4a3 3 0 0 0-3-3" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1 class="app-title">Media Sleep Timer</h1>
+          <p class="app-subtitle">YouTube · SoundCloud · Spotify</p>
+        </div>
+      </div>
+      <div id="statusBadge" class="status-badge status-idle">
+        <span class="status-dot"></span>
+        <span id="statusBadgeText">Chưa đặt</span>
+      </div>
+    </header>
+
+    <!-- Countdown Timer Card -->
+    <section class="timer-card">
+      <div class="countdown-wrapper">
+        <div class="countdown-display" id="countdownDisplay">00:00:00</div>
+        <div class="countdown-label" id="countdownLabel">Chưa đặt hẹn giờ</div>
+      </div>
+
+      <!-- Action Buttons Row -->
+      <div class="action-buttons-row">
+        <button id="btnPauseNow" class="btn btn-action-pause" title="Dừng phát media ngay lập tức">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" rx="1.5"/>
+            <rect x="14" y="4" width="4" height="16" rx="1.5"/>
+          </svg>
+          <span>Dừng phát ngay</span>
+        </button>
+
+        <button id="btnCancelTimer" class="btn btn-action-cancel" disabled title="Hủy hẹn giờ hiện tại">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+          <span>Hủy hẹn giờ</span>
+        </button>
+      </div>
+
+      <!-- Feedback Toast Banner -->
+      <div id="statusBanner" class="status-banner hidden">
+        <span id="bannerIcon">ℹ️</span>
+        <span id="bannerText">Thông báo</span>
+      </div>
+    </section>
+
+    <!-- Preset Buttons Section -->
+    <section class="section">
+      <div class="section-title">
+        <span>Chọn nhanh thời gian</span>
+      </div>
+      <div class="preset-grid">
+        <button class="preset-btn" data-minutes="15">15 phút</button>
+        <button class="preset-btn" data-minutes="30">30 phút</button>
+        <button class="preset-btn" data-minutes="45">45 phút</button>
+        <button class="preset-btn" data-minutes="60">1 giờ</button>
+        <button class="preset-btn" data-minutes="90">1 giờ 30</button>
+        <button class="preset-btn" data-minutes="120">2 giờ</button>
+      </div>
+    </section>
+
+    <!-- Custom Timer & Specific Time Section -->
+    <section class="section">
+      <div class="section-title">
+        <span>Hẹn giờ tùy chỉnh</span>
+      </div>
+
+      <!-- Custom Minutes Input -->
+      <div class="input-card">
+        <label class="input-label" for="customMinutes">Nhập số phút:</label>
+        <div class="input-row">
+          <div class="input-field-wrapper">
+            <input type="number" id="customMinutes" min="1" max="1440" placeholder="VD: 90" />
+            <span class="input-unit">phút</span>
+          </div>
+          <button id="btnStartCustom" class="btn btn-primary">Bắt đầu</button>
+        </div>
+      </div>
+
+      <!-- Specific Clock Time Input -->
+      <div class="input-card">
+        <div class="input-header-row">
+          <label class="input-label" for="specificTime">Dừng vào giờ cụ thể:</label>
+          <span class="sub-hint" id="specificHint">Hôm nay / Ngày mai</span>
+        </div>
+        <div class="input-row">
+          <div class="input-field-wrapper">
+            <input type="time" id="specificTime" />
+          </div>
+          <button id="btnStartSpecific" class="btn btn-primary">Đặt giờ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Information -->
+    <footer class="footer">
+      <div class="tabs-status" id="tabsStatusIndicator">
+        <span class="tabs-dot"></span>
+        <span id="tabsCountText">Đang kiểm tra tab media...</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
